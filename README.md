@@ -27,20 +27,20 @@ in YAML format.
 
 ```yaml
 pools:
-  id: <userPoolId>
-  allows:
-    - key:   "<target key of user attribute>"
-      value: "<expected value>"
-      rule:  "<matching rule> ::= 'exatc_match' | 'forward_match' | 'backward_match'"
+  - id: <userPoolId>
+    allows:
+      - key:   "<target key of user attribute>"
+        value: "<expected value>"
+        rule:  "<matching rule> ::= 'exatc_match' | 'forward_match' | 'backward_match'"
 ```
 
 ```yaml
 pools:
-  id: <userPoolId>
-  allows:
-    - key:   "Email"
-      value: "@example.com"
-      rule:  "backward_match"
+  - id: <userPoolId>
+    allows:
+      - key:   "Email"
+        value: "@example.com"
+        rule:  "backward_match"
 ```
 
 ## Lisence
