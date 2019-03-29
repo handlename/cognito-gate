@@ -40,7 +40,7 @@ example:
 pools:
   - id: ap-northeast-1_XXXX
     allows:
-      - key:   "Email"
+      - key:   "email"
         value: "@example.com"
         rule:  "backward_match"
 ```

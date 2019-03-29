@@ -1,6 +1,6 @@
 pools:
   - id: ap-northeeast-1_XXXXX
     allows:
-      - key:   "Email"
+      - key:   "email"
         value: "@example.com"
         rule:  "backward_match"

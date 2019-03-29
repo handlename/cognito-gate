@@ -20,22 +20,22 @@ func TestHandlerExactMatch(t *testing.T) {
 				ID: "foobar",
 				Allows: []configAllow{
 					configAllow{
-						Key:   "Email",
+						Key:   "email",
 						Value: "alice@example.com",
 						Rule:  "exact_match",
 					},
 					configAllow{
-						Key:   "Email",
+						Key:   "email",
 						Value: "bob@",
 						Rule:  "forward_match",
 					},
 					configAllow{
-						Key:   "Email",
+						Key:   "email",
 						Value: "@example.org",
 						Rule:  "backward_match",
 					},
 					configAllow{
-						Key:   "Email",
+						Key:   "email",
 						Value: "eve@example.com",
 						// Rule: exact_match will be used as defalut
 					},
@@ -49,7 +49,7 @@ func TestHandlerExactMatch(t *testing.T) {
 		event.UserPoolID = "foobar"
 		event.Request = events.CognitoEventUserPoolsPreSignupRequest{
 			UserAttributes: map[string]string{
-				"Email": email,
+				"email": email,
 			},
 		}
 
