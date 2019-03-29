@@ -34,6 +34,11 @@ func TestHandlerExactMatch(t *testing.T) {
 						Value: "@example.org",
 						Rule:  "backward_match",
 					},
+					configAllow{
+						Key:   "Email",
+						Value: "eve@example.com",
+						// Rule: exact_match will be used as defalut
+					},
 				},
 			},
 		},
@@ -59,6 +64,7 @@ func TestHandlerExactMatch(t *testing.T) {
 		{email: "bob@example.net", err: nil},
 		{email: "charlie@example.org", err: nil},
 		{email: "devola@example.com", err: ErrNotAllowed},
+		{email: "eve@example.com", err: nil},
 	} {
 		_, err := handler(makeEvent(c.email))
 

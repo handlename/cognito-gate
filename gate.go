@@ -68,11 +68,6 @@ func handler(event events.CognitoEventUserPoolsPreSignup) (events.CognitoEventUs
 			}
 
 			switch allow.Rule {
-			case "exact_match":
-				if value == allow.Value {
-					log.Printf("allows %s=%s\n", allow.Key, value)
-					return event, nil
-				}
 			case "forward_match":
 				if strings.HasPrefix(value, allow.Value) {
 					log.Printf("allows %s=%s\n", allow.Key, value)
@@ -83,8 +78,13 @@ func handler(event events.CognitoEventUserPoolsPreSignup) (events.CognitoEventUs
 					log.Printf("allows %s=%s\n", allow.Key, value)
 					return event, nil
 				}
+			case "exact_match":
+				fallthrough
 			default:
-				log.Println("unknown rule:", allow.Rule)
+				if value == allow.Value {
+					log.Printf("allows %s=%s\n", allow.Key, value)
+					return event, nil
+				}
 			}
 		}
 	}
