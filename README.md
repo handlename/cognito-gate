@@ -34,9 +34,11 @@ pools:
         rule:  "<matching rule> ::= 'exatc_match' | 'forward_match' | 'backward_match'"
 ```
 
+example:
+
 ```yaml
 pools:
-  - id: <userPoolId>
+  - id: ap-northeast-1_XXXX
     allows:
       - key:   "Email"
         value: "@example.com"
