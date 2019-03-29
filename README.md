@@ -31,7 +31,7 @@ pools:
     allows:
       - key:   "<target key of user attribute>"
         value: "<expected value>"
-        rule:  "<matching rule> ::= 'exatc_match' | 'forward_match' | 'backward_match'"
+        rule:  "<matching rule> ::= 'exact_match' | 'forward_match' | 'backward_match'"
 ```
 
 example:
