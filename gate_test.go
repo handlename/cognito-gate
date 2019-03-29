@@ -60,8 +60,6 @@ func TestHandlerExactMatch(t *testing.T) {
 		{email: "charlie@example.org", err: nil},
 		{email: "devola@example.com", err: ErrNotAllowed},
 	} {
-		t.Logf("email=%s", c.email)
-
 		_, err := handler(makeEvent(c.email))
 
 		if err != c.err {

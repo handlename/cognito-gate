@@ -70,14 +70,17 @@ func handler(event events.CognitoEventUserPoolsPreSignup) (events.CognitoEventUs
 			switch allow.Rule {
 			case "exact_match":
 				if value == allow.Value {
+					log.Printf("allows %s=%s\n", allow.Key, value)
 					return event, nil
 				}
 			case "forward_match":
 				if strings.HasPrefix(value, allow.Value) {
+					log.Printf("allows %s=%s\n", allow.Key, value)
 					return event, nil
 				}
 			case "backward_match":
 				if strings.HasSuffix(value, allow.Value) {
+					log.Printf("allows %s=%s\n", allow.Key, value)
 					return event, nil
 				}
 			default:
@@ -85,6 +88,8 @@ func handler(event events.CognitoEventUserPoolsPreSignup) (events.CognitoEventUs
 			}
 		}
 	}
+
+	log.Printf("denied %+v\n", event.Request.UserAttributes)
 
 	return event, ErrNotAllowed
 }
