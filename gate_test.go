@@ -18,27 +18,9 @@ func TestHandlerExactMatch(t *testing.T) {
 		Pools: []configPool{
 			configPool{
 				ID: "foobar",
-				Allows: []configAllow{
-					configAllow{
-						Key:   "email",
-						Value: "alice@example.com",
-						Rule:  "exact_match",
-					},
-					configAllow{
-						Key:   "email",
-						Value: "bob@",
-						Rule:  "forward_match",
-					},
-					configAllow{
-						Key:   "email",
-						Value: "@example.org",
-						Rule:  "backward_match",
-					},
-					configAllow{
-						Key:   "email",
-						Value: "eve@example.com",
-						// Rule: exact_match will be used as defalut
-					},
+				Allows: []string{
+					"alice@example.com",
+					"@example.net",
 				},
 			},
 		},
@@ -62,9 +44,8 @@ func TestHandlerExactMatch(t *testing.T) {
 	}{
 		{email: "alice@example.com", err: nil},
 		{email: "bob@example.net", err: nil},
-		{email: "charlie@example.org", err: nil},
-		{email: "devola@example.com", err: ErrNotAllowed},
-		{email: "eve@example.com", err: nil},
+		{email: "charlie@example.com", err: ErrNotAllowed},
+		{email: "devola@example.org", err: ErrNotAllowed},
 	} {
 		_, err := handler(makeEvent(c.email))
 

@@ -17,14 +17,8 @@ type configRoot struct {
 }
 
 type configPool struct {
-	ID     string        `yaml:"id"`
-	Allows []configAllow `yaml:"allows"`
-}
-
-type configAllow struct {
-	Key   string `yaml:"key"`
-	Value string `yaml:"value"`
-	Rule  string `yaml:"rule"`
+	ID     string   `yaml:"id"`
+	Allows []string `yaml:"allows"`
 }
 
 var config configRoot
@@ -56,35 +50,23 @@ func parseConfig(configPath string) error {
 }
 
 func handler(event events.CognitoEventUserPoolsPreSignup) (events.CognitoEventUserPoolsPreSignup, error) {
+	email, ok := event.Request.UserAttributes["email"]
+	if !ok {
+		return event, ErrNotAllowed
+	}
+
 	for _, pool := range config.Pools {
 		if event.UserPoolID != pool.ID {
 			continue
 		}
 
 		for _, allow := range pool.Allows {
-			value, ok := event.Request.UserAttributes[allow.Key]
-			if !ok {
-				continue
-			}
-
-			switch allow.Rule {
-			case "forward_match":
-				if strings.HasPrefix(value, allow.Value) {
-					log.Printf("allows %s=%s\n", allow.Key, value)
-					return event, nil
-				}
-			case "backward_match":
-				if strings.HasSuffix(value, allow.Value) {
-					log.Printf("allows %s=%s\n", allow.Key, value)
-					return event, nil
-				}
-			case "exact_match":
-				fallthrough
-			default:
-				if value == allow.Value {
-					log.Printf("allows %s=%s\n", allow.Key, value)
-					return event, nil
-				}
+			if strings.Contains(allow, "@") && email == allow {
+				// exact email address
+				return event, nil
+			} else if strings.HasSuffix(email, allow) {
+				// domain
+				return event, nil
 			}
 		}
 	}

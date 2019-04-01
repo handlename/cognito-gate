@@ -29,9 +29,8 @@ in YAML format.
 pools:
   - id: <userPoolId>
     allows:
-      - key:   "<target key of user attribute>"
-        value: "<expected value>"
-        rule:  "<matching rule> ::= 'exact_match'(default) | 'forward_match' | 'backward_match'"
+      - <pattern ::= 'domain' | 'email'>
+      - ...
 ```
 
 example:
@@ -40,9 +39,8 @@ example:
 pools:
   - id: ap-northeast-1_XXXX
     allows:
-      - key:   "email"
-        value: "@example.com"
-        rule:  "backward_match"
+      - "example.com"
+      - "alice@example.net"
 ```
 
 ## Lisence
