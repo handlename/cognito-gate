@@ -20,7 +20,7 @@ func TestHandlerExactMatch(t *testing.T) {
 				ID: "foobar",
 				Allows: []string{
 					"alice@example.com",
-					"@example.net",
+					"example.net",
 				},
 			},
 		},
@@ -46,6 +46,7 @@ func TestHandlerExactMatch(t *testing.T) {
 		{email: "bob@example.net", err: nil},
 		{email: "charlie@example.com", err: ErrNotAllowed},
 		{email: "devola@example.org", err: ErrNotAllowed},
+		{email: "eve@sub.example.net", err: ErrNotAllowed},
 	} {
 		_, err := handler(makeEvent(c.email))
 

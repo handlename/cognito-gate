@@ -64,7 +64,7 @@ func handler(event events.CognitoEventUserPoolsPreSignup) (events.CognitoEventUs
 			if strings.Contains(allow, "@") && email == allow {
 				// exact email address
 				return event, nil
-			} else if strings.HasSuffix(email, allow) {
+			} else if strings.HasSuffix(email, "@"+allow) {
 				// domain
 				return event, nil
 			}
