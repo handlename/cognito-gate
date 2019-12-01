@@ -8,5 +8,5 @@ require (
 	golang.org/x/crypto v0.0.0-20190325154230-a5d413f7728c // indirect
 	golang.org/x/net v0.0.0-20190327025741-74e053c68e29 // indirect
 	golang.org/x/tools v0.0.0-20190327011446-79af862e6737 // indirect
-	gopkg.in/yaml.v2 v2.2.2
+	gopkg.in/yaml.v2 v2.2.7
 )
