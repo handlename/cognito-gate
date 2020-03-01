@@ -1,7 +1,7 @@
 module github.com/handlename/cognito-gate
 
 require (
-	github.com/aws/aws-lambda-go v1.10.0
+	github.com/aws/aws-lambda-go v1.14.0
 	github.com/pkg/errors v0.8.1
 	github.com/saibing/bingo v0.0.0-20190327024820-e30f14308111 // indirect
 	github.com/sourcegraph/jsonrpc2 v0.0.0-20190106185902-35a74f039c6a // indirect
