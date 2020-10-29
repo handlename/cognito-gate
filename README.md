@@ -1,24 +1,19 @@
 # cognito-gate
 
-`cognito-gate` is a go package to simplify make permission trigger for Amazon Cognito.
+`cognito-gate` is a application to simplify make permission trigger for Amazon Cognito, runs on AWS Lambda.
 
 ## Usage
 
-```go
-package main
+Download binary from release, deploy as Lambda function as your favorite way.
 
-import (
-    "log"
+`cognito-gate` is for runtime `provided.al2`.
+bootstrap file may be like this:
 
-    "github.com/handlename/cognito-gate"
-)
+```sh
+#!/bin/sh
 
-func main() {
-    if err := gate.Run(os.Getenv("GATE_CONFIG_PATH")); err != nil {
-        log.Println(err)
-        os.Exit(1)
-    }
-}
+cd $LAMBDA_TASK_ROOT
+./cognito-gate
 ```
 
 ## Configuration
