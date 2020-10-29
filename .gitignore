@@ -14,3 +14,4 @@
 *.out
 
 cmd/cognito-gate/cognito-gate
+dist/
