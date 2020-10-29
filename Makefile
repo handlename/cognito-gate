@@ -9,8 +9,8 @@ cmd/cognito-gate/cognito-gate: go.sum *.go */**/*.go
 test:
 	go test -v ./...
 
-.PHONY: tag
-tag:
+.PHONY: release
+release:
 	-git tag v$(VERSION)
 	git push
 	git push --tags
